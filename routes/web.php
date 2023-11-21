@@ -15,11 +15,13 @@ use illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function(){
+    return view('auth/login');
+});
 
 Route::group(['middleware' => ['auth']], function(){
     Route::get('/home', [DashboardController::class, 'index']) -> name('dashboard');
     Route::resource('buku', BookController::class);
-    Route::get('/search', [DashboardController::class, 'searchTopic'])->name('pages.book.index');
 });
 
 Auth::routes();
